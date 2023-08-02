@@ -1,0 +1,24 @@
+<div id="map" style="height: 500px">
+    <script>
+        let map;
+
+        async function initMap(myLatLng) {
+
+
+            const { Map } = await google.maps.importLibrary("maps");
+
+            map = new Map(document.getElementById("map"), {
+                center: myLatLng,
+                zoom: 15,
+            });
+
+            const marker = new google.maps.Marker({
+                map,
+                position: myLatLng,
+            });
+
+        }
+        firstLatLng = {lat : {{ location.lat }}, lng: {{ location.lng}} }
+        initMap(firstLatLng);
+    </script>
+</div>

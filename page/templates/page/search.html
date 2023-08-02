@@ -1,0 +1,15 @@
+{% extends "page/base.html" %}
+{% block content %}
+{% if error %}
+        <h2>{{ error }}</h2>
+        <br>
+{% endif %}
+{% include "page/map.html" %}
+
+
+{% for result in results %}
+<h1><a href="{% url 'page-view' result.place_id %}"onclick="initMap({lat: {{ result.location.lat }}, lng: {{ result.location.lng }} })">{{ result.name }}</a></h1>
+<h2>{{ result.formatted_address }}</h2>
+<br>
+{% endfor %}
+{% endblock %}
