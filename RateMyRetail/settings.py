@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'page.apps.PageConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -124,3 +125,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 GOOGLE_MAPS_API_KEY = 'AIzaSyDOIqqONDUbO8R86i5HA5rSiNJfmJbaZQI'
+
+CRISPY_TEMPLATE_PACK = 'uni_form'

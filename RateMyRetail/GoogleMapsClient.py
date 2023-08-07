@@ -34,8 +34,7 @@ class GoogleMapsClient():
                 return {'results' : resultList, 'first' : resultList[0], 'key' : settings.GOOGLE_MAPS_API_KEY, 'location' : resultList[0]['location']}
             else:
                 return {'error' : 'No results found.'}
-        else:
-            raise ValueError("Only two values in params can be passed. " + params + " was passed.")
+
 
     def getByPlaceID(self, id):
         result = self.client.place(place_id=id)['result']

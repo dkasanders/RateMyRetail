@@ -1,11 +1,46 @@
 {% extends "page/base.html" %}
 
 {% block content %}
-{% include "page/map.html" %}
 <div>
     <h1>{{ name }}</h1>
     <h2>{{ formatted_address }}</h2>
+    <a href="{% url 'page-review' place_id %}">Write a Review</a>
 </div>
+<div>
+    {% if reviews %}
+    <h2>{{ total_reviews }}</h2>
+    <p>Flexibility: {{ averages.flexibility }}</p>
+    <p>Benefits: {{ averages.benefits }}</p>
+    <p>Compensation: {{ averages.compensation }}</p>
+    <p>Overall: {{ averages.overall }}</p>
+    <br>
+    {% for review in reviews %}
+    <h1>{{ review.position_title }} - {{ review.employment_type }}</h1>
+    <h3>From {{ review.employment_start }} to
+        {% if review.currently_employed %}
+            Current
+        {% else %}
+            {{ review.employment_end }}
+        {% endif %}
+    </h3>
+    <h4>Posted {{ review.date_posted }}</h4>
+    <div class="ratings">
+        <p>Flexibility: {{ review.flexibility_rating }}</p>
+        <p>Benefits: {{ review.benefits_rating }}</p>
+        <p>Compensation: {{ review.compensation_rating }}</p>
+        <p>Overall: {{ review.overall_rating }}</p>
+    </div>
+    <h2>Review:</h2>
+    <p>{{ review.review_text }}</p>
+    <br>
+    {% endfor %}
+
+    {% else %}
+        <h3>No Reviews! Be the first one to write a review</h3>
+    {% endif %}
+</div>
+
+
 {% endblock content %}
 
 
